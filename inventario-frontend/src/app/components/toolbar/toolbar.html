@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menú de navegación">
+      <mat-icon>menu</mat-icon>
+    </button>
+  
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [routerLink]="'/inventario'">
+        <mat-icon>inventory_2</mat-icon>
+        <span>Inventario</span>
+      </button>
+      <button mat-menu-item [routerLink]="'/salida'">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Salida de producto</span>
+      </button>
+      <button mat-menu-item [routerLink]="'/historial'">
+        <mat-icon>history</mat-icon>
+        <span>Historial de movimientos</span>
+      </button>
+    </mat-menu>
+  
+    <span>Inventario Castores</span>
+    <span class="example-spacer"></span>
+  
+    <button mat-icon-button aria-label="Favoritos">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="Compartir">
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
+  

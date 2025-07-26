@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Agregar al inventario</h2>
+    <mat-dialog-content>
+      <p>Producto: <strong>{{ data.nombre }}</strong></p>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Cantidad a agregar</mat-label>
+        <input matInput type="number" [formControl]="cantidadControl" />
+        <mat-error *ngIf="cantidadControl.invalid">Ingrese una cantidad válida</mat-error>
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button (click)="dialogRef.close()">Cancelar</button>
+      <button mat-raised-button color="primary" [disabled]="cantidadControl.invalid" (click)="agregar()">Agregar</button>
+    </mat-dialog-actions>
