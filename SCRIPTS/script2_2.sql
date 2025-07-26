@@ -1,28 +1,28 @@
 
 -- crear la base de datos
-CREATE DATABASE inventario1;
-USE inventario1 ;
+CREATE DATABASE inventario2;
+USE inventario2 ;
 
 -- tabla roles:
 CREATE TABLE roles (
-  idRol INT PRIMARY KEY AUTO_INCREMENT,
+  id_rol INT PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(100) NOT NULL
 );
 
 -- tabla usuarios
 CREATE TABLE usuarios (
-  idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+  id_usuario INT PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(100) NOT NULL,
   correo VARCHAR(50) NOT NULL,
-  contraseña VARCHAR(25) NOT NULL,
-  idRol INT NOT NULL,
+  contrasena VARCHAR(25) NOT NULL,
+  id_rol INT NOT NULL,
   estatus INT,
-  FOREIGN KEY (idRol) REFERENCES roles(idRol)
+  FOREIGN KEY (id_rol) REFERENCES roles(id_rol)
 );
 
 -- tabla productos
 CREATE TABLE productos (
-  idProducto INT PRIMARY KEY AUTO_INCREMENT,
+  id_producto INT PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(100) NOT NULL,
   descripcion VARCHAR(100) NOT NULL,
   cantidad INT NOT NULL DEFAULT 0,
@@ -31,29 +31,27 @@ CREATE TABLE productos (
 
 -- tabls tipos_movimiento
 CREATE TABLE  tipos_movimiento (
-  idTipo INT PRIMARY KEY AUTO_INCREMENT,
+  id_tipo INT PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(100) NOT NULL
 );
 
 -- tabla movimientos
 CREATE TABLE movimientos (
-  idMovimiento INT PRIMARY KEY AUTO_INCREMENT,
-  idProducto INT NOT NULL,
-  idUsuario INT NOT NULL,
-  idTipo INT NOT NULL,
+  id_movimiento INT PRIMARY KEY AUTO_INCREMENT,
+  id_producto INT NOT NULL,
+  id_usuario INT NOT NULL,
+  id_tipo INT NOT NULL,
   cantidad INT NOT NULL,
   fecha DATETIME NOT NULL,
-  FOREIGN KEY (idProducto) REFERENCES productos(idProducto),
-  FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario),
-  FOREIGN KEY (idTipo) REFERENCES tipos_movimiento(idTipo)
+  FOREIGN KEY (id_producto) REFERENCES productos(id_producto),
+  FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
+  FOREIGN KEY (id_tipo) REFERENCES tipos_movimiento(id_tipo)
 );
 
 -- insertar roles y usuarios para pruebas 
 INSERT INTO roles (nombre) VALUES ('ADMIN');
 INSERT INTO roles (nombre) VALUES ('ALMACENISTA');
 
-INSERT INTO usuarios (nombre, correo, contraseña, idRol, estatus) VALUES 
-('admin', 'admin1@gmail.com', 'admin123', 1, 1),
-('almacenista', 'almacenista1@gmail.com', 'almacen123', 2, 1);
-
-SELECT * FROM usuarios;
+INSERT INTO usuarios (nombre, correo, contrasena, id_rol, estatus) VALUES 
+('admin', 'admin@gmail.com', 'admin123', 1, 1),
+('almacenista', 'almacenista@gmail.com', 'almacen123', 2, 1);

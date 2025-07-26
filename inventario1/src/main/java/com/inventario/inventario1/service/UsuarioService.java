@@ -11,9 +11,9 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public Usuario login(String username, String password) {
-        Usuario usuario = usuarioRepository.findByUsername(username);
-        if (usuario != null && usuario.getPassword().equals(password)) {
+    public Usuario login(String correo, String contrasena) {
+        Usuario usuario = usuarioRepository.findByCorreoAndContrasena(correo,contrasena);
+        if (usuario != null && usuario.getContrasena().equals(contrasena)) {
             return usuario;
         }
         return null;

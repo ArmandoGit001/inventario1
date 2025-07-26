@@ -13,7 +13,7 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
-    private Integer idProducto;
+    private Integer id_producto;
     private String nombre;
     private String descripcion;
     private Integer cantidad;
@@ -27,12 +27,12 @@ public class Producto {
 
     // Getters y setters
 
-    public Integer getIdProducto() {
-        return idProducto;
+    public Integer getId_producto() {
+        return id_producto;
     }
 
-    public void setIdProducto(Integer idProducto) {
-        this.idProducto = idProducto;
+    public void setId_producto(Integer id_producto) {
+        this.id_producto = id_producto;
     }
 
     public String getNombre() {

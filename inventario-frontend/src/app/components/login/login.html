@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-title style="text-align: center;">Inicio de Sesión</mat-card-title>
+
+  <mat-card-content>
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Correo</mat-label>
+      <input matInput [(ngModel)]="correo" placeholder="Ingresa tu correo" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Contraseña</mat-label>
+      <input matInput [(ngModel)]="contrasena" placeholder="Ingresa tu contrasena" type="password" />
+    </mat-form-field>
+    
+    <button type="button" mat-raised-button color="primary" (click)="login()">Iniciar sesión</button>
+
+    <div *ngIf="mensaje" style="margin-top: 20px; text-align: center; color: red;">
+      {{ mensaje }}
+    </div>
+  </mat-card-content>
+</mat-card>
