@@ -1,6 +1,5 @@
 package com.inventario.inventario1.service;
 
-import com.inventario.inventario1.model.Producto;
 import com.inventario.inventario1.model.Usuario;
 import com.inventario.inventario1.repository.UsuarioRepository;
 

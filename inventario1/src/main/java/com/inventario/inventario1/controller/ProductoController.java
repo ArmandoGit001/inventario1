@@ -1,17 +1,12 @@
 package com.inventario.inventario1.controller;
 
-import com.inventario.inventario1.model.Movimiento;
-import com.inventario.inventario1.repository.MovimientoRepository;
 import com.inventario.inventario1.model.Producto;
 import com.inventario.inventario1.service.ProductoService;
-import com.inventario.inventario1.model.Usuario;
-import com.inventario.inventario1.service.UsuarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Map;
@@ -23,12 +18,6 @@ public class ProductoController {
 
     @Autowired
     private ProductoService productoService;
-
-    @Autowired
-    private MovimientoRepository movimientoRepository;
-
-    @Autowired
-    private UsuarioService usuarioService;
 
     @GetMapping
     public List<Producto> listarTodos() {
