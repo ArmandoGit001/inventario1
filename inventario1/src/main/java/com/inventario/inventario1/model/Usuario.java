@@ -49,11 +49,11 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
-    public Integer getRol() {
+    public Integer getId_rol() {
         return id_rol;
     }
-
-    public void setRol(Integer id_rol) {
+    
+    public void setId_rol(Integer id_rol) {
         this.id_rol = id_rol;
     }
 

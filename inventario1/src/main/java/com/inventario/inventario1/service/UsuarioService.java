@@ -1,7 +1,11 @@
 package com.inventario.inventario1.service;
 
+import com.inventario.inventario1.model.Producto;
 import com.inventario.inventario1.model.Usuario;
 import com.inventario.inventario1.repository.UsuarioRepository;
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +21,9 @@ public class UsuarioService {
             return usuario;
         }
         return null;
+    }
+
+    public Optional<Usuario> obtenerPorId(Integer id) {
+        return usuarioRepository.findById(id);
     }
 }

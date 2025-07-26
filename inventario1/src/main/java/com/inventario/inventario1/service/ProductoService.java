@@ -62,7 +62,7 @@ public class ProductoService {
     }
 
     //Agregar cantidad de producto al inventario
-    public void agregarCantidad(Integer id, Integer cantidad) {
+    public void agregarCantidad(Integer id, Integer cantidad, Integer id_usuario) {
         Optional<Producto> optionalProducto = productoRepository.findById(id);
         if (optionalProducto.isPresent()) {
             Producto producto = optionalProducto.get();
@@ -70,14 +70,38 @@ public class ProductoService {
             productoRepository.save(producto);
 
             /* REGISTRAR MOVIMIENTO */
-            Movimiento movimiento = new Movimiento();
-            movimiento.setProducto(producto);
-            movimiento.setCantidad(cantidad);
-            movimiento.setFecha(LocalDateTime.now());
-            movimiento.setTipo("ENTRADA");
+            Movimiento m = new Movimiento();
+            m.setId_producto(id);
+            m.setCantidad(cantidad);
+            m.setFecha(LocalDateTime.now());
+            m.setId_usuario(id_usuario);
+            m.setId_tipo(1);    //Entrada
 
-            movimientoService.guardar(movimiento);
+            movimientoService.guardar(m);
         }
     }
+
+    /* Salida del INVENTARIO */
+    public void registrarSalidaProducto(Integer id_producto, Integer cantidad, Integer id_usuario) {
+        Producto producto = productoRepository.findById(id_producto)
+            .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+    
+        if (producto.getCantidad() < cantidad) {
+            throw new RuntimeException("Stock insuficiente para la salida.");
+        }
+    
+        producto.setCantidad(producto.getCantidad() - cantidad);
+        productoRepository.save(producto);
+    
+        Movimiento m = new Movimiento();
+        m.setId_producto(id_producto);
+        m.setCantidad(cantidad);
+        m.setFecha(LocalDateTime.now());
+        m.setId_tipo(2);    //salida
+        m.setId_usuario(id_usuario);
+    
+        movimientoService.guardar(m);
+    }
+    
 
 }

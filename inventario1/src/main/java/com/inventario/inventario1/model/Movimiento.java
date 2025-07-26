@@ -1,29 +1,25 @@
 package com.inventario.inventario1.model;
 
 import java.time.LocalDateTime;
-
 import jakarta.persistence.*;
-
 
 @Entity
 @Table(name = "movimientos") 
-
 public class Movimiento {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_movimiento;
 
-    private Integer id_usuario;
     private Integer id_tipo;
     private Integer cantidad;
     private LocalDateTime fecha;
 
-    private String tipo; // "ENTRADA", "SALIDA"
+    // Campo para id_producto en vez de relación
+    private Integer id_producto;
 
-    // Relación con Producto
-    @ManyToOne
-    @JoinColumn(name = "id_producto", referencedColumnName = "id_producto")
-    private Producto producto;
+    // Campo para id_usuario en vez de relación
+    private Integer id_usuario;
 
     // Getters y Setters
 
@@ -33,14 +29,6 @@ public class Movimiento {
 
     public void setId_movimiento(Integer id_movimiento) {
         this.id_movimiento = id_movimiento;
-    }
-
-    public Integer getId_usuario() {
-        return id_usuario;
-    }
-
-    public void setId_usuario(Integer id_usuario) {
-        this.id_usuario = id_usuario;
     }
 
     public Integer getId_tipo() {
@@ -67,19 +55,19 @@ public class Movimiento {
         this.fecha = fecha;
     }
 
-    public String getTipo() {
-        return tipo;
+    public Integer getId_producto() {
+        return id_producto;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setId_producto(Integer id_producto) {
+        this.id_producto = id_producto;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public Integer getId_usuario() {
+        return id_usuario;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setId_usuario(Integer id_usuario) {
+        this.id_usuario = id_usuario;
     }
 }

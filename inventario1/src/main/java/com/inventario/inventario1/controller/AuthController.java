@@ -27,7 +27,7 @@ public class AuthController {
         if (usuario != null) {
             Map<String, Object> response = new HashMap<>();
             response.put("message", "Login correcto");
-            response.put("rol", usuario.getRol());
+            response.put("rol", usuario.getId_rol());
             response.put("id_usuario", usuario.getId_usuario()); 
             return ResponseEntity.ok(response);
         } else {

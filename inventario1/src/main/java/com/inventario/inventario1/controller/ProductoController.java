@@ -1,23 +1,34 @@
 package com.inventario.inventario1.controller;
 
+import com.inventario.inventario1.model.Movimiento;
+import com.inventario.inventario1.repository.MovimientoRepository;
 import com.inventario.inventario1.model.Producto;
 import com.inventario.inventario1.service.ProductoService;
+import com.inventario.inventario1.model.Usuario;
+import com.inventario.inventario1.service.UsuarioService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/productos")
-@CrossOrigin(origins = "http://localhost:4200") 
-
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProductoController {
 
     @Autowired
     private ProductoService productoService;
+
+    @Autowired
+    private MovimientoRepository movimientoRepository;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @GetMapping
     public List<Producto> listarTodos() {
@@ -34,10 +45,17 @@ public class ProductoController {
         return productoService.obtenerProductosActivos();
     }
 
-    /*@PostMapping
-    public Producto guardar(@RequestBody Producto producto) {
-        return productoService.guardar(producto);
-    }*/
+    @GetMapping("/inactivos")
+    public List<Producto> getProductosInactivos() {
+        return productoService.obtenerProductosInactivos();
+    }
+
+    @PostMapping
+    public ResponseEntity<Producto> agregarProducto(@RequestBody Producto producto) {
+        producto.setActivo(true); // por defecto activo
+        Producto nuevo = productoService.guardarProducto(producto);
+        return ResponseEntity.ok(nuevo);
+    }
 
     @PutMapping("/{id}")
     public Producto actualizar(@PathVariable Integer id, @RequestBody Producto producto) {
@@ -49,24 +67,11 @@ public class ProductoController {
     public void eliminar(@PathVariable Integer id) {
         productoService.eliminar(id);
     }
-    
-    @PostMapping
-        public ResponseEntity<Producto> agregarProducto(@RequestBody Producto producto) {
-        producto.setActivo(true); // por default activo
-        Producto nuevo = productoService.guardarProducto(producto);
-        return ResponseEntity.ok(nuevo);
-    }
 
     @PutMapping("/{id}/baja")
     public ResponseEntity<?> darDeBaja(@PathVariable Integer id) {
         productoService.darDeBaja(id);
         return ResponseEntity.ok().build();
-    }
-
-    //dar de baja y reactivar los productos:
-    @GetMapping("/inactivos")
-    public List<Producto> getProductosInactivos() {
-        return productoService.obtenerProductosInactivos();
     }
 
     @PutMapping("/{id}/reactivar")
@@ -78,9 +83,20 @@ public class ProductoController {
     @PutMapping("/{id}/entradas")
     public ResponseEntity<?> agregarCantidad(@PathVariable Integer id, @RequestBody Map<String, Integer> body) {
         Integer cantidad = body.get("cantidad");
-        productoService.agregarCantidad(id, cantidad);
+        Integer id_usuario = body.get("id_usuario");
+
+        productoService.agregarCantidad(id, cantidad,id_usuario);
+
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/{id}/salidas")
+    public ResponseEntity<?> registrarSalida(@PathVariable Integer id, @RequestBody Map<String, Integer> body) {
+        int cantidad = body.get("cantidad");
+        Integer id_usuario = body.get("id_usuario");
 
+        productoService.registrarSalidaProducto(id, cantidad, id_usuario);
+
+        return ResponseEntity.ok().build();
+    }
 }
