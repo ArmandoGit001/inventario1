@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/productos")
-@CrossOrigin(origins = "*") // Habilita peticiones desde el frontend
+@CrossOrigin(origins = "http://localhost:4200") 
 
 public class ProductoController {
 
@@ -25,6 +25,11 @@ public class ProductoController {
     @GetMapping("/{id}")
     public Optional<Producto> obtenerPorId(@PathVariable Integer id) {
         return productoService.obtenerPorId(id);
+    }
+
+    @GetMapping("/activos")
+    public List<Producto> getProductosActivos() {
+        return productoService.obtenerProductosActivos();
     }
 
     @PostMapping

@@ -17,6 +17,10 @@ public class ProductoService {
         return productoRepository.findAll();
     }
 
+    public List<Producto> obtenerProductosActivos() {
+        return productoRepository.findByActivo(true);
+    }
+
     public Optional<Producto> obtenerPorId(Integer id) {
         return productoRepository.findById(id);
     }
