@@ -47,3 +47,13 @@ CREATE TABLE movimientos (
   FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario),
   FOREIGN KEY (idTipo) REFERENCES tipos_movimiento(idTipo)
 );
+
+-- insertar roles y usuarios para pruebas 
+INSERT INTO roles (nombre) VALUES ('ADMIN');
+INSERT INTO roles (nombre) VALUES ('ALMACENISTA');
+
+INSERT INTO usuarios (nombre, correo, contraseña, idRol, estatus) VALUES 
+('admin', 'admin1@gmail.com', 'admin123', 1, 1),
+('almacenista', 'almacenista1@gmail.com', 'almacen123', 2, 1);
+
+SELECT * FROM usuarios;
