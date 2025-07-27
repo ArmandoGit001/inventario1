@@ -10,6 +10,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 import { AgregarCantidad } from '../agregar-cantidad/agregar-cantidad';
 import { Toolbar } from "../toolbar/toolbar";
+import { SesionService } from '../../services/sesion.service'
 
 @Component({
   selector: 'app-inventario',
@@ -19,13 +20,16 @@ import { Toolbar } from "../toolbar/toolbar";
 })
 export class Inventario implements OnInit {
   productos: Producto[] = [];
+  rolUsuario: number = 0;
 
   constructor(
+    private sesionService: SesionService,
     private productoService: ProductoService,
     private dialog: MatDialog
   ) {}
 
   ngOnInit() {
+    this.rolUsuario = this.sesionService.getId_rol();
     this.productoService.obtenerProductosActivos().subscribe({
       next: (data) => this.productos = data,
       error: (err) => console.error('Error al obtener productos:', err)
@@ -43,8 +47,9 @@ export class Inventario implements OnInit {
   darDeBaja(id_producto: number): void {
     if (confirm('¿Estás seguro de dar de baja este producto?')) {
       this.productoService.darDeBaja(id_producto).subscribe(() => {
-        // Vuelve a cargar los productos activos
+        // Vuelve a cargar los productos activos e inactivos
         this.obtenerProductos();
+        this.cargarProductosInactivos();
       });
     }
   }

@@ -1,0 +1,38 @@
+.salida-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+  
+  .salida-card {
+    width: 100%;
+    max-width: 500px;
+    padding: 24px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .full-width {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+  }
+  
+  .mensaje-error {
+    color: #d32f2f;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .mensaje-success {
+    color: #388e3c;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+  }
+  

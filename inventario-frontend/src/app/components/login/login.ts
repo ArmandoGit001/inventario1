@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,7 +11,7 @@ import { SesionService } from '../../services/sesion.service';
 
 @Component({
   selector: 'app-login',
-  imports: [MatFormFieldModule,MatInputModule, FormsModule, MatButtonModule, CommonModule, MatCardModule],
+  imports: [MatFormFieldModule,MatInputModule, FormsModule, MatButtonModule, CommonModule, MatCardModule, NgIf],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })
@@ -29,6 +29,7 @@ export class Login {
       next: (data) => {
         if(data.id_usuario) {
           this.SesionService.setId_usuario(data.id_usuario);
+          this.SesionService.setId_rol(data.rol);
         }
         this.router.navigate(['/inventario']);
       },

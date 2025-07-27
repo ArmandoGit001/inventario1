@@ -8,13 +8,21 @@
         <mat-icon>inventory_2</mat-icon>
         <span>Inventario</span>
       </button>
-      <button mat-menu-item [routerLink]="'/salida'">
+      @if(rolUsuario === 2){
+        <button mat-menu-item [routerLink]="'/salida'">
         <mat-icon>local_shipping</mat-icon>
         <span>Salida de producto</span>
       </button>
+    }
+    @if(rolUsuario === 1){
       <button mat-menu-item [routerLink]="'/historial'">
         <mat-icon>history</mat-icon>
         <span>Historial de movimientos</span>
+      </button>
+    }
+      <button mat-menu-item (click)="cerrarSesion()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Cerrar Sesion</span>
       </button>
     </mat-menu>
   

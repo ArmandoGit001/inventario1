@@ -1,38 +1,30 @@
-<app-toolbar/>
-<mat-card class="salida-card">
+<app-toolbar></app-toolbar>
+
+<div class="salida-container">
+  <mat-card class="salida-card">
     <mat-card-title>
       <h2>Salida de Producto</h2>
     </mat-card-title>
-  
+
     <mat-card-content>
-  
-      <div class="form-group">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>ID del producto</mat-label>
-          <input matInput type="number" [(ngModel)]="productoId" placeholder="Ej. 3" />
-        </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>ID del producto</mat-label>
+        <input matInput type="number" [(ngModel)]="productoId" placeholder="Ej. 3" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Cantidad a sacar</mat-label>
+        <input matInput type="number" [(ngModel)]="cantidad" placeholder="Ej. 5" />
+      </mat-form-field>
+
+      <div class="button-wrapper">
+        <button mat-raised-button color="primary" (click)="registrarSalida()">Registrar salida</button>
       </div>
-  
-      <div class="form-group">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Cantidad a sacar</mat-label>
-          <input matInput type="number" [(ngModel)]="cantidad" placeholder="Ej. 5" />
-        </mat-form-field>
-      </div>
-  
-      <div class="form-group">
-      <button mat-raised-button color="primary" (click)="registrarSalida()">Registrar salida</button>
-      </div>
-  
-      @if (error) {
-        <div class="mensaje-error">{{ error }}</div>
-      }
-      @else if (success) {
-        <div class="mensaje-success">{{ success }}</div>
-      }
-  
+
+      <div *ngIf="error" class="mensaje-error">{{ error }}</div>
+      <div *ngIf="success" class="mensaje-success">{{ success }}</div>
+
     </mat-card-content>
   </mat-card>
-  
-
-
+</div>

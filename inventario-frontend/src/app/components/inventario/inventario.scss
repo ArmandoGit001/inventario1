@@ -31,4 +31,16 @@
   .boton-agregar {
     text-align: right;
   }
+
+  .bajas {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .bajas-card {
+    padding: 1rem;
+    
+  }
   

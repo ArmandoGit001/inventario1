@@ -9,5 +9,6 @@ export const routes: Routes = [
     { path: 'inventario', component: Inventario },
     { path: 'salida', component: SalidaProducto },
     { path: 'historial', component: Movimientos },
+    { path: 'login', component: Login },
     { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
