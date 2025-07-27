@@ -15,10 +15,8 @@ public class Movimiento {
     private Integer cantidad;
     private LocalDateTime fecha;
 
-    // Campo para id_producto en vez de relación
     private Integer id_producto;
 
-    // Campo para id_usuario en vez de relación
     private Integer id_usuario;
 
     // Getters y Setters

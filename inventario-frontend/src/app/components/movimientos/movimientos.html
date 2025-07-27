@@ -1,2 +1,45 @@
 <app-toolbar/>
-<p>movimientos works!</p>
+<mat-card>
+      <h2>Lista de Movimientos</h2>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Filtrar por ID Tipo</mat-label>
+        <input matInput (keyup)="filtrarPorTipo($event)" placeholder="Ej. 1, 2, 3">
+      </mat-form-field>
+
+      <mat-table [dataSource]="movimientos" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="id_movimiento">
+          <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+          <mat-cell *matCellDef="let mov">{{ mov.id_movimiento }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="id_producto">
+          <mat-header-cell *matHeaderCellDef>ID Producto</mat-header-cell>
+          <mat-cell *matCellDef="let mov">{{ mov.id_producto }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="id_usuario">
+          <mat-header-cell *matHeaderCellDef>ID Usuario</mat-header-cell>
+          <mat-cell *matCellDef="let mov">{{ mov.id_usuario }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="id_tipo">
+          <mat-header-cell *matHeaderCellDef>ID Tipo</mat-header-cell>
+          <mat-cell *matCellDef="let mov">{{ getNombreTipo(mov.id_tipo) }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="cantidad">
+          <mat-header-cell *matHeaderCellDef>Cantidad</mat-header-cell>
+          <mat-cell *matCellDef="let mov">{{ mov.cantidad }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="fecha">
+          <mat-header-cell *matHeaderCellDef>Fecha</mat-header-cell>
+          <mat-cell *matCellDef="let mov">{{ mov.fecha | date:'short' }}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="columnas"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columnas;"></mat-row>
+      </mat-table>
+    </mat-card>
